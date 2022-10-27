@@ -7,16 +7,20 @@ var generateBtn = document.querySelector("#generate");
 
 
 function randomInt(min, max) {
-  return Math.floor(Math.random()*(max - min) + min)
+  if (!max) {
+    max = min
+    min = 0
+  }
+  var rand = Math.random()
+  return Math.floor(min*(1 - rand) + rand*max)
 }
 
 function randomItem(list) {
-  return list[randomInt(0, passwordCriteria - 1)]
+  return list[randomInt(list.length)]
 }
 
 
 function generatePassword() {
-
 
   var input = window.prompt("How long do you want your password?");
 
@@ -25,12 +29,12 @@ function generatePassword() {
   if (isNaN(passwordLength)){
     window.alert("Please enter a number.")
   return
-  };
+  }
 
   if (passwordLength < 8 || passwordLength > 128) {
     window.alert("Password must be between 8 and 128 characters")
   return
-  };
+  }
 
   var likeNumber = window.confirm("Would you like numbers in your password?");
   var likeSymbol = window.confirm("Would you like symbols in your password?");
@@ -64,15 +68,20 @@ function generatePassword() {
     passwordCriteria.push(upperCaseList)
   }
 
+  if (passwordCriteria.length === 0) {
+    passwordCriteria.push(numberList)
+  }
+
   var createdPassword = ""
 
   for (i = 0; i < passwordLength; i++) {
     var randomList = randomItem(passwordCriteria)
     var randomChar = randomItem(randomList)
+    createdPassword += randomChar
   }
 
 
-
+console.log(createdPassword)
 
 
 
