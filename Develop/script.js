@@ -52,19 +52,19 @@ function generatePassword() {
     upperCaseList[i] = lowerCaseList[i].toUpperCase()
   }
 
-  if (likeNumber === true) {
+  if (likeNumber) {
     passwordCriteria.push(numberList)
   }
 
-  if (likeSymbol === true) {
+  if (likeSymbol) {
     passwordCriteria.push(symbolsList)
   }
 
-  if (likeLowerCase === true) {
+  if (likeLowerCase) {
     passwordCriteria.push(lowerCaseList)
   }
 
-  if (likeUpperCase === true) {
+  if (likeUpperCase) {
     passwordCriteria.push(upperCaseList)
   }
 
@@ -80,15 +80,9 @@ function generatePassword() {
     createdPassword += randomChar
   }
 
-
-console.log(createdPassword)
-
-
-
+  return createdPassword
 }
  
-
-
 
 // Write password to the #password input
 function writePassword() {
